@@ -14,7 +14,22 @@ class CategoryController extends Controller
 
         return response()->json([
             'success' => true,
-            'memssage'
+            'message' => 'List Kategori',
+            'data'    => $categories
+        ]);
+    }
+
+    public function show($slug)
+    {
+        $category = Category::query()
+        ->with('products')
+        ->where('slug', $slug)
+        ->firstOrFail();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'List Produk Kategori' . $category->name,
+            'data'    => $category
         ]);
     }
 }
