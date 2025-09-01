@@ -1,13 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Customer\LoginController;
+use App\Http\Controllers\Api\Customer\LogoutController;
 use App\Http\Controllers\Api\Public\CategoryController;
 use App\Http\Controllers\Api\Customer\RegisterController;
 
 Route::group(['prefix' => 'customer'], function () {
-    // Route::post('/register', RegisterController::class)->name('customer.register');
-    // Route::post('/login', LoginController::class)->name('customer.login');
-    // Route::post('/logout', LogoutController::class)->name('customer.logout');
+    Route::post('/register', RegisterController::class)->name('customer.register');
+    Route::post('/login', LoginController::class)->name('customer.login');
+    Route::post('/logout', LogoutController::class)->name('customer.logout');
 });
 
 Route::group(['prefix' => 'public'], function () {

@@ -17,7 +17,7 @@ class RegisterController extends Controller
         //set Validation 
         $validator = Validator::make($request->all(), [
             'name'     => 'required',
-            'email'    => 'required|email|unique::customers',
+            'email'    => 'required|email|unique:customers',
             'password' => 'required|min:8|confirmed' 
         ]);
 
@@ -31,5 +31,18 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
+
+        if($customer) {
+            return response()->json([
+                'success'   => true,
+                'message'   => 'Register Berhasil',
+                'data'      => $customer,
+            ], 201);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Register Gagal',
+        ], 409);
     }
 }
