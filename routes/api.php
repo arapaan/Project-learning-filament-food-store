@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Customer\LogoutController;
 use App\Http\Controllers\Api\Public\CategoryController;
 use App\Http\Controllers\Api\Customer\MyOrderController;
 use App\Http\Controllers\Api\Customer\MyProfileController;
+use App\Http\Controllers\Api\Customer\RatingController;
 use App\Http\Controllers\Api\Customer\RegisterController;
 
 Route::group(['prefix' => 'customer'], function () {
@@ -16,6 +17,7 @@ Route::group(['prefix' => 'customer'], function () {
     Route::get('/my-orders/{snap_token}', [MyOrderController::class, 'show'])->name('customer.my-orders.show');
     Route::get('/profile', [MyProfileController::class, 'index'])->name('customer.profile');
     Route::post('/profile', [MyProfileController::class, 'update'])->name('customer.profile.update');
+    Route::post('/ratings', RatingController::class)->name('customer.ratings');
 });
 
 Route::group(['prefix' => 'public'], function () {
