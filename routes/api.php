@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\Customer\RatingController;
 use App\Http\Controllers\Api\Customer\RegisterController;
 use App\Http\Controllers\Api\Public\CartController;
 use App\Http\Controllers\Api\Public\ProductController;
+use App\Http\Controllers\Api\Public\RajaOngkirController;
 use App\Http\Controllers\Api\Public\SliderController;
 
 Route::group(['prefix' => 'customer'], function () {
@@ -35,5 +36,7 @@ Route::group(['prefix' => 'public'], function () {
     Route::post('/carts/increment', [CartController::class, 'IncrementCart'])->name('public.carts.increment');
     Route::post('/carts/decrement', [CartController::class, 'DecrementCart'])->name('public.carts.decrement');
     Route::delete('/carts/{id}', [CartController::class, 'destroy'])->name('public.carts.destroy');
+    Route::get('/search-destination', [RajaOngkirController::class, 'searchDestination'])->name('public.search-destination');
+    Route::post('/check-ongkir', [RajaOngkirController::class, 'checkOngkir'])->name('public.ongkir');
 
 });
