@@ -8,7 +8,9 @@ use App\Http\Controllers\Api\Customer\MyOrderController;
 use App\Http\Controllers\Api\Customer\MyProfileController;
 use App\Http\Controllers\Api\Customer\RatingController;
 use App\Http\Controllers\Api\Customer\RegisterController;
+use App\Http\Controllers\Api\Public\CallbackController;
 use App\Http\Controllers\Api\Public\CartController;
+use App\Http\Controllers\Api\Public\CheckOutController;
 use App\Http\Controllers\Api\Public\ProductController;
 use App\Http\Controllers\Api\Public\RajaOngkirController;
 use App\Http\Controllers\Api\Public\SliderController;
@@ -38,5 +40,7 @@ Route::group(['prefix' => 'public'], function () {
     Route::delete('/carts/{id}', [CartController::class, 'destroy'])->name('public.carts.destroy');
     Route::get('/search-destination', [RajaOngkirController::class, 'searchDestination'])->name('public.search-destination');
     Route::post('/check-ongkir', [RajaOngkirController::class, 'checkOngkir'])->name('public.ongkir');
-
+    Route::post('/checkout', [CheckOutController::class, 'store'])->name('public.checkout');    
 });
+
+Route::post('/callback', CallbackController::class)->name('public.callback');
