@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Customer\MyOrderController;
 use App\Http\Controllers\Api\Customer\MyProfileController;
 use App\Http\Controllers\Api\Customer\RatingController;
 use App\Http\Controllers\Api\Customer\RegisterController;
+use App\Http\Controllers\Api\Public\SliderController;
 
 Route::group(['prefix' => 'customer'], function () {
     Route::post('/register', RegisterController::class)->name('customer.register');
@@ -21,6 +22,7 @@ Route::group(['prefix' => 'customer'], function () {
 });
 
 Route::group(['prefix' => 'public'], function () {
+    Route::get('/sliders', SliderController::class)->name('public.sliders');
     Route::get('/categories', [CategoryController::class, 'index'])->name('public.categories');
     Route::get('/categories/{slug}', [CategoryController::class, 'show'])->name('public.categories.show');
 });
