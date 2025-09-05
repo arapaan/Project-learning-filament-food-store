@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Customer\MyOrderController;
 use App\Http\Controllers\Api\Customer\MyProfileController;
 use App\Http\Controllers\Api\Customer\RatingController;
 use App\Http\Controllers\Api\Customer\RegisterController;
+use App\Http\Controllers\Api\Public\CartController;
 use App\Http\Controllers\Api\Public\ProductController;
 use App\Http\Controllers\Api\Public\SliderController;
 
@@ -29,4 +30,10 @@ Route::group(['prefix' => 'public'], function () {
     Route::get('/products', [ProductController::class, 'index'])->name('public.products');
     Route::get('/products-popular', [ProductController::class, 'ProductPopular'])->name('public.products.popular');
     Route::get('/products/{slug}', [ProductController::class, 'show'])->name('public.products.show');
+    Route::get('/carts', [CartController::class, 'index'])->name('public.carts');
+    Route::post('/carts', [CartController::class, 'store'])->name('public.carts.store');
+    Route::post('/carts/increment', [CartController::class, 'IncrementCart'])->name('public.carts.increment');
+    Route::post('/carts/decrement', [CartController::class, 'DecrementCart'])->name('public.carts.decrement');
+    Route::delete('/carts/{id}', [CartController::class, 'destroy'])->name('public.carts.destroy');
+
 });
